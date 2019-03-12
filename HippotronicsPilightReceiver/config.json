@@ -1,0 +1,15 @@
+﻿{
+  "server": {
+      "ip": "192.168.1.8",
+      "port": 5000
+  },
+  "switches": [
+    {
+      "name": "bedroom_ns_switch",
+      "type": "ev1527",
+      "address": "646911",
+      "lamps":  [ "BoozyLampRed", "BoozyLampWhite"]
+    }
+  ]
+
+}
