@@ -28,6 +28,9 @@ namespace Termors.Services.HippotronicsPilightReceiver
         [JsonProperty("address")]
         public string Address { get; set; }
 
+        [JsonProperty("state")]
+        public string State { get; set; }
+
         [JsonProperty("lamps")]
         public string[] Lamps { get; set; }
     }
@@ -36,6 +39,9 @@ namespace Termors.Services.HippotronicsPilightReceiver
     {
         [JsonProperty("server")]
         public ServerConfig Server { get; set; }
+
+        [JsonProperty("hippoledd")]
+        public ServerConfig HippoLed { get; set; }
 
         [JsonProperty("switches")]
         public SwitchConfig[] Switches { get; set; }
