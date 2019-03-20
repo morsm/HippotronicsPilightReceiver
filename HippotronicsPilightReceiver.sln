@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HippotronicsPilightReceiver
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{39F3781F-B29C-4F22-A66A-08408EE44375}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PulseEv1527", "PulseEv1527\PulseEv1527.csproj", "{C79021E9-1172-4C82-9379-A0D5BDCE9298}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,5 +17,9 @@ Global
 		{EE361B3E-91D4-4061-BBA9-496DE33828C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE361B3E-91D4-4061-BBA9-496DE33828C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE361B3E-91D4-4061-BBA9-496DE33828C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C79021E9-1172-4C82-9379-A0D5BDCE9298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C79021E9-1172-4C82-9379-A0D5BDCE9298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C79021E9-1172-4C82-9379-A0D5BDCE9298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C79021E9-1172-4C82-9379-A0D5BDCE9298}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
