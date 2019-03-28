@@ -13,25 +13,16 @@ namespace Termors.Services.HippotronicsPilightSender
         public UInt16 Port { get; set; }
     }
 
-    public class Command
-    {
-        [JsonProperty("unitcode")]
-        public uint Unitcode { get; set; }
-
-        [JsonProperty("command")]
-        public uint Operation { get; set; }
-    }
-
     public class LampConfig
     {
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("on")]
-        public Command OnCommand { get; set; }
+        public LampCommand OnCommand { get; set; }
 
         [JsonProperty("off")]
-        public Command OffCommand { get; set; }
+        public LampCommand OffCommand { get; set; }
 
     }
 
