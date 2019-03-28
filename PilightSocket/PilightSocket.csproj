@@ -1,15 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <RootNamespace>Termors.Services.HippotronicsPilightSender</RootNamespace>
+    <RootNamespace>Termors.Services.Libraries.PilightSocket</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PilightSocket\PilightSocket.csproj" />
   </ItemGroup>
 </Project>

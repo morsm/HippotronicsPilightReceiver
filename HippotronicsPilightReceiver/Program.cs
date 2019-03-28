@@ -2,50 +2,25 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+
+using Termors.Services.Libraries.PilightSocket;
 
 
 namespace Termors.Services.HippotronicsPilightReceiver
 {
-    public delegate Task MessageListener(PilightMessage msg);
 
-    class Program
+    class Program : PilightDaemon<Configuration>
     {
-        public static Configuration Configuration;
-        public static TcpTextClient Client;
-        public static ManualResetEvent QuitEvent = new ManualResetEvent(false);
         public static Dictionary<string, DateTime> CoolOff = new Dictionary<string, DateTime>();
-
-        public static event MessageListener MessageReceived;
-
-        public static readonly string PILIGHT_ID_MESSAGE = "{ \"action\": \"identify\", \"options\": { \"receiver\": 1 } }";
-
 
         static void Main(string[] args)
         {
-            Console.WriteLine("HippotronicsPilightReceiver started");
-
-            Console.CancelKeyPress += (sender, e) =>
-            {
-                Console.WriteLine("SIGINT received");
-                QuitEvent.Set();
-            };
-
-            MessageReceived += OnMessage;
-
-            LoadConfig();
-
-            SetupSocket();
-
-            SocketLoop();
-
-            Console.WriteLine("HippotronicsPilightReceiver stopped");
-            Client.Dispose();
+            new Program().Init();
         }
 
-        private static async Task OnMessage(PilightMessage msg)
+        public override async Task OnMessage(PilightMessage msg)
         {
             try
             {
@@ -97,58 +72,22 @@ namespace Termors.Services.HippotronicsPilightReceiver
         }
 
 
-        private static void SocketLoop()
+        public override string Name
         {
-            // Socket loop
-            var quitTask = Task.Run(() => { QuitEvent.WaitOne(); });
-            var running = true;
-            var currentMessage = new PilightMessage();
-
-            while (running)
+            get
             {
-                var lineTask = Client.ReadLine();
-
-                if (0 == Task.WaitAny(quitTask, lineTask))
-                {
-                    running = false;
-                }
-                else
-                {
-                    // line from socket
-                    var line = lineTask.Result;
-
-                    currentMessage.AddMessageLine(line);
-                    if (currentMessage.IsComplete)
-                    {
-                        MessageReceived?.Invoke(currentMessage);
-                        currentMessage = new PilightMessage();
-
-                    }
-                }
+                return "HippotronicsPilightReceiver";
             }
         }
 
-        private static void SetupSocket()
+        public override PilightServerconfig Serverconfig
         {
-            Client = new TcpTextClient(
-                Configuration.Server.IPAddress, 
-                Configuration.Server.Port
-            );
-
-            Client.Send(PILIGHT_ID_MESSAGE).Wait();
-        }
-
-
-
-        private static void LoadConfig()
-        {
-            using (var reader = File.OpenText("config.json"))
+            get
             {
-                var ser = JsonSerializer.Create();
-                var jreader = new JsonTextReader(reader);
-
-                Configuration = ser.Deserialize<Configuration>(jreader);
+                return new PilightServerconfig { IPAddress = Configuration.Server.IPAddress, Port = Configuration.Server.Port };
             }
         }
+
+
     }
 }

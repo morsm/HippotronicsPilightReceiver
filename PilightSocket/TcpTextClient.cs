@@ -3,7 +3,7 @@ using System.IO;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 
-namespace Termors.Services.HippotronicsPilightReceiver
+namespace Termors.Services.Libraries.PilightSocket
 {
     public class TcpTextClient : TcpClient
     {

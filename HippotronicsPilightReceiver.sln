@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ev1527Lib", "Ev1527Lib\Ev15
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HippotronicsPilightSender", "HippotronicsPilightSender\HippotronicsPilightSender.csproj", "{3836B631-F3C6-4192-9BD3-F8948CE138F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PilightSocket", "PilightSocket\PilightSocket.csproj", "{F962F060-8725-4BE8-9C32-E6FA100032D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,5 +35,9 @@ Global
 		{3836B631-F3C6-4192-9BD3-F8948CE138F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3836B631-F3C6-4192-9BD3-F8948CE138F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3836B631-F3C6-4192-9BD3-F8948CE138F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F962F060-8725-4BE8-9C32-E6FA100032D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F962F060-8725-4BE8-9C32-E6FA100032D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F962F060-8725-4BE8-9C32-E6FA100032D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F962F060-8725-4BE8-9C32-E6FA100032D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Termors.Services.HippotronicsPilightReceiver
+namespace Termors.Services.Libraries.PilightSocket
 {
     public class PilightMessage
     {
@@ -18,6 +18,8 @@ namespace Termors.Services.HippotronicsPilightReceiver
 
         public void AddMessageLine(string line)
         {
+            if (null == line) return; 
+
             char[] lineAsChars = line.ToCharArray();
 
             _sb.Append(line);

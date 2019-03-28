@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace Termors.Services.HippotronicsPilightReceiver
+namespace Termors.Services.Libraries.PilightSocket
 {
     public class PilightJsonObject
     {

@@ -1,28 +1,30 @@
-﻿using System;
-using System.IO;
-using Newtonsoft.Json;
+﻿
+using Termors.Services.Libraries.PilightSocket;
 
 
 namespace Termors.Services.HippotronicsPilightSender
 {
-    class Program
+    class Program :PilightDaemon<Configuration>
     {
-        public static Configuration Configuration;
+        public override string Name
+        {
+            get
+            {
+                return "HippotronicsPilightSender";
+            }
+        }
+
+        public override PilightServerconfig Serverconfig
+        {
+            get
+            {
+                return new PilightServerconfig { IPAddress = Configuration.Server.IPAddress, Port = Configuration.Server.Port };
+            }
+        }
 
         static void Main(string[] args)
         {
-            LoadConfig();
-        }
-
-        private static void LoadConfig()
-        {
-            using (var reader = File.OpenText("config.json"))
-            {
-                var ser = JsonSerializer.Create();
-                var jreader = new JsonTextReader(reader);
-
-                Configuration = ser.Deserialize<Configuration>(jreader);
-            }
+            new Program().Init();
         }
 
     }
