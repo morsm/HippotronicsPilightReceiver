@@ -7,12 +7,12 @@
     {
       "name": "office",
       "on": {
-        "unitcode": 100001,
-        "command":  8
+        "unitcode": 646911,
+        "command":  0
           },
       "off": {
-        "unitcode": 911119,
-        "command": 7
+        "unitcode": 646911,
+        "command": 1
       }
     }
   ]

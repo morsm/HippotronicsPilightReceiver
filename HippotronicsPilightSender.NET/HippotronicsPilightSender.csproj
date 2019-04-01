@@ -100,6 +100,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="WebApiController.cs" />
     <Compile Include="PilightRawMessage.cs" />
+    <Compile Include="WebApiDataObjects.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.json">
