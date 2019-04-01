@@ -9,7 +9,7 @@ namespace Termors.Services.Libraries.PilightSocket
 
     public class PilightSocket : IDisposable
     {
-        public TcpTextClient Client { get; private set; }
+        protected TcpTextClient Client { get; private set; }
         protected ManualResetEvent QuitEvent = new ManualResetEvent(false);
 
         public event MessageListener MessageReceived;
@@ -48,6 +48,11 @@ namespace Termors.Services.Libraries.PilightSocket
                     }
                 }
             }
+        }
+
+        public async Task SendMesage(string message)
+        {
+            await Client.Send(message);
         }
 
         public void Dispose()

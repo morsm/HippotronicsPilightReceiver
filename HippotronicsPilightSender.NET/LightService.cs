@@ -10,7 +10,7 @@ using Owin;
 
 namespace Termors.Services.HippotronicsPilightSender
 {
-    public delegate void LampSwitchedDelegate(LightService service, bool on);
+    public delegate Task LampSwitchedDelegate(LightService service, bool on);
 
     public class LightService : IDisposable
     {
@@ -27,11 +27,13 @@ namespace Termors.Services.HippotronicsPilightSender
         public event LampSwitchedDelegate LampSwitched;
         public static readonly IDictionary<ushort, LightService> Registry = new Dictionary<ushort, LightService>();
 
+        protected static readonly ServiceDiscovery Discovery = new ServiceDiscovery();
+
         public void RegisterMDNS()
         {
             var service = new ServiceProfile("HippoLed-" + Name, "_hippohttp._tcp", _port);
-            var sd = new ServiceDiscovery();
-            sd.Advertise(service);
+
+            Discovery.Advertise(service);
         }
 
         public void StartWebserver()
@@ -59,13 +61,9 @@ namespace Termors.Services.HippotronicsPilightSender
             }
             set
             {
-                bool oldStatus = _on;
-                if (oldStatus != value)
-                {
-                    _on = value;
+                _on = value;
 
-                    LampSwitched?.Invoke(this, _on);
-                }
+                LampSwitched?.Invoke(this, _on);
             }
         }
 

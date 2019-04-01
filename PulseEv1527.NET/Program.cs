@@ -10,7 +10,7 @@ namespace Termors.Services.Tools.PulseEv1527
         Decode
     }
 
-    class Program
+    public class Program
     {
         static string PULSES = "464 717 458 720 1076 157 999 239 975 253 963 257 963 264 333 850 340 850 337 844 967 260 943 283 317 868 938 283 937 291 928 295 937 287 922 301 918 312 292 896 288 902 908 316 289 905 289 900 294 8997";
 
@@ -18,7 +18,7 @@ namespace Termors.Services.Tools.PulseEv1527
         static uint Node = 0;
         static uint Command = 0;
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             HandleArgs(args);
 

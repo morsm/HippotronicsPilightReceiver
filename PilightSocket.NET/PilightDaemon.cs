@@ -66,7 +66,7 @@ namespace Termors.Services.Libraries.PilightSocket
                 Serverconfig.Port
             );
 
-            Socket.Client.Send(PILIGHT_ID_MESSAGE).Wait();
+            Socket.SendMesage(PILIGHT_ID_MESSAGE).Wait();
 
             Socket.MessageReceived += OnMessage;
 

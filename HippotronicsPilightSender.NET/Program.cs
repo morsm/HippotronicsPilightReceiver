@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 using Termors.Services.Libraries.PilightSocket;
+using Termors.Services.Libraries.Ev1527Lib;
 
 
 namespace Termors.Services.HippotronicsPilightSender
@@ -49,6 +51,11 @@ namespace Termors.Services.HippotronicsPilightSender
             {
                 SetupService(lamp);
             }
+
+            foreach (var key in LightService.Registry.Keys)
+            {
+                Console.WriteLine("Running on port {0}: {1}", key, LightService.Registry[key].Name);
+            }
         }
 
         private void SetupService(LampConfig lamp)
@@ -75,10 +82,18 @@ namespace Termors.Services.HippotronicsPilightSender
             return Convert.ToUInt16(port);
         }
 
-        void Service_LampSwitched(LightService service, bool on)
+        async Task Service_LampSwitched(LightService service, bool on)
         {
-            // TODO
+            var cmd = on ? service.OnCommand : service.OffCommand;
+            var msg = new PilightRawMessage();
+
+            // Encode command
+            int[] pulses = Ev1527Decoder.Encode(cmd.Unitcode, cmd.Operation);
+            msg.Code.SetPulsesAsCode(pulses);
+
+            await Socket.SendMesage(msg.ToString());
         }
+
 
     }
 }
