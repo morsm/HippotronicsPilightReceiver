@@ -3,15 +3,17 @@
       "ip": "192.168.1.8",
       "port": 5000
   },
+  "repeats":  3,
+  "repeatdelayms": 500,
   "lamps": [
     {
       "name": "office",
       "on": {
-        "unitcode": 646911,
+        "unitcode": 205600,
         "command":  0
           },
       "off": {
-        "unitcode": 646911,
+        "unitcode": 206500,
         "command": 1
       }
     }

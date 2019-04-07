@@ -31,6 +31,12 @@ namespace Termors.Services.HippotronicsPilightSender
         [JsonProperty("server")]
         public ServerConfig Server { get; set; }
 
+        [JsonProperty("repeats")]
+        public int Repeats { get; set; } = 1;
+
+        [JsonProperty("repeatdelayms")]
+        public int RepeatDelay { get; set; } = 0;
+
         [JsonProperty("lamps")]
         public LampConfig[] Lamps { get; set; }
 

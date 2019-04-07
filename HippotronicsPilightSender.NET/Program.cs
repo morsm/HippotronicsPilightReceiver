@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Termors.Services.Libraries.PilightSocket;
@@ -85,13 +86,19 @@ namespace Termors.Services.HippotronicsPilightSender
         async Task Service_LampSwitched(LightService service, bool on)
         {
             var cmd = on ? service.OnCommand : service.OffCommand;
-            var msg = new PilightRawMessage();
 
             // Encode command
-            int[] pulses = Ev1527Decoder.Encode(cmd.Unitcode, cmd.Operation);
-            msg.Code.SetPulsesAsCode(pulses);
+            int[] pulses = Ev1527Decoder.Encode(cmd.Unitcode, cmd.Operation, 256, 200, 1000);
 
-            await Socket.SendMesage(msg.ToString());
+            for (int i = 0; i < Configuration.Repeats; i++)
+            {
+                if (i > 0 && Configuration.RepeatDelay > 0) Thread.Sleep(Configuration.RepeatDelay);
+
+                var msg = new PilightRawMessage();
+                msg.Code.SetPulsesAsCode(pulses);
+
+                await Socket.SendMesage(msg.ToString());
+            }
         }
 
 
